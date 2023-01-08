@@ -1,0 +1,21 @@
+<style>
+.rect {
+	background: red;
+	width: 200px;
+	height: 200px;
+}
+</style>
+<div class="rect"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script>
+//gsap.to(".rect", { x: 200, duration: 2 });
+gsap.to(".rect", {
+	background: "blue"	// 色のアニメーションがうまくいかない
+	, x: 200
+	, duration: 1
+	// , delay: 2
+	, repeat: 3
+	, yoyo: true
+});
+</script>
