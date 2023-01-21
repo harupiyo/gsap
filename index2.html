@@ -1,0 +1,92 @@
+<!--
+https://www.toyotachiiki-mc.or.jp/school/ を模範に...
+1. スクロールすると浮かび上がる演出
+1.1 浮かび上がる演出
+https://designsupply-web.com/media/programming/6916/
+TODO 1.2 スクロールトリガープラグインを使用する
+https://designsupply-web.com/media/programming/6982/
+https://designsupply-web.com/media/programming/7096/
+-->
+<style>
+.gallary {
+	display: flex;
+}
+.rect {
+	width: 200px;
+	height: 200px;
+}
+.rect1 { background: lightgreen; }
+.rect2 { background: lightblue; }
+</style>
+
+<div class="gallary">
+	<div class="rect rect1"></div>
+	<div class="rect rect2"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+
+<script>
+// 1.1 浮かび上がる演出
+gsap.fromTo(
+	'.rect1',
+	{
+		y: 060,
+		autoAlpha: 0
+	},
+	{
+		y: 0,
+		autoAlpha: 1,
+		delay: 0.4,
+		duration: 2,
+		ease: 'power2.out',
+		repeat: -1,
+		yoyo: true,
+	}
+);
+gsap.fromTo(
+	'.rect2',
+	{
+		y: 40,
+	},
+	{
+		y: 0,
+		duration: 1,
+		ease: 'power1.inOut',
+		repeat: -1,
+		yoyo:true,
+	}
+);
+</script>
+
+<!-- トリガー要素とアニメーション要素が別 -->
+<div class="js-animation-trigger">
+  <div class="js-animation-element">hello</div>
+</div>
+
+<!-- トリガー要素とアニメーション要素が同じ（アニメーションさせる要素をトリガーにする） -->
+<div class="js-animation-trigger js-animation-element">hello</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+<script>
+// 1.2 スクロールトリガープラグインを使用する
+gsap.registerPlugin(ScrollTrigger);
+gsap.fromTo('.js-animation-element',
+	{
+		y: 50,
+		autoAlpha: 0
+	},
+	{
+		y: 0,
+		autoAlpha: 1,
+		delay: 0.6,
+		duration: 1.2,
+		ease: 'power2.out',
+		scrollTrigger: {
+			trigger: '.js-animation-trigger',
+			start: 'top center'
+		}
+	}
+);
+
+</script>
